@@ -1,9 +1,9 @@
 pipeline {
   agent any
   environment {
-    CLOUDSDK_CORE_PROJECT='insights-api-localdev'
-    CLIENT_EMAIL='jenkins@insights-api-localdev.iam.gserviceaccount.com'
-    GCLOUD_CREDS=credentials('gcloud-creds')
+    CLOUDSDK_CORE_PROJECT='ybvr-dev'
+    CLIENT_EMAIL='jenkins@ybvr-dev.iam.gserviceaccount.com'
+    GCLOUD_CREDS=credentials('gcloud-ubvr-dev')
   }
   stages {
     stage('Verify version') {
@@ -23,14 +23,14 @@ pipeline {
     stage('Install service') {
       steps {
         sh '''
-          gcloud run services replace service.yaml --platform='managed' --region='us-central1'
+          gcloud run services replace service.yaml --platform='managed' --region='europe-west1-b'
         '''
       }
     }
     stage('Allow allUsers') {
       steps {
         sh '''
-          gcloud run services add-iam-policy-binding hello --region='us-central1' --member='allUsers' --role='roles/run.invoker'
+          gcloud run services add-iam-policy-binding hello --region='europe-west1-b' --member='allUsers' --role='roles/run.invoker'
         '''
       }
     }
