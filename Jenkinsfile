@@ -3,7 +3,7 @@ pipeline {
   environment {
     CLOUDSDK_CORE_PROJECT='ybvr-dev'
     CLIENT_EMAIL='jenkins@ybvr-dev.iam.gserviceaccount.com'
-    GCLOUD_CREDS=credentials('gcloud-ubvr-dev')
+    GCLOUD_CREDS=credentials('gcloud-ybvr-dev')
   }
   stages {
     stage('Verify version') {
