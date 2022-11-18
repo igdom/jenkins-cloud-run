@@ -20,10 +20,15 @@ pipeline {
         '''
       }
     }
+    stage('Pull repo') {
+      steps {
+        sh 'git pull git@github.com:igdom/jenkins-cloud-run.git'
+      }
+    }
     stage('Install service') {
       steps {
         sh '''
-          gcloud run services replace service.yaml --platform='managed' --region='europe-west1-b'
+          gcloud run services replace jenkins-cloud-run/service.yaml --platform='managed' --region='europe-west1-b'
         '''
       }
     }
